@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ThingDef ParentName="MakeableDrugBase">
+        <!-- Referenced item name in xml -->
+        <defName>ws1</defName>
+        <!-- Displayed item name in RimWorld -->
+        <label>Winter Soldier I</label>
+    </ThingDef>
+    <!-- Description of the item when clicking 'i' in game -->
+    <description>The funny weed mix from our Schedule I playthrough.</description>
+    <!-- Load textures -->
+    <graphicData>
+        <texPath>Things/Item/Drug/ws1</texPath>
+        <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <!-- Item properties -->
+    <statBases>
+        <WorkToMake>500</WorkToMake>
+        <MarketValue>118</MarketValue>
+        <Mass>0.01</Mass>
+    </statBases>
+    <!-- Crafting recipe -->
+    <costList>
+        <SmokeLeafJoint>20</SmokeLeafJoint>
+        <Neutroamine>20</Neutroamine>
+    </costList>
+    
+</Defs>
+
