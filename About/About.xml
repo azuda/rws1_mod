@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+    <name>Winter Soldier I</name>
+    <description>Adds Winter Soldier I weed mix; boosts pawn movement speed and allows skipping sleep. Probably super imba.</description>
+    <author>azuda</author>
+    <supportedVersions>
+        <li>1.5</li>
+        <li>1.6</li>
+    </supportedVersions>
+    <packageId>azuda.winter_soldier_i</packageId>
+</ModMetaData>
