@@ -5,25 +5,128 @@
         <defName>ws1</defName>
         <!-- Displayed item name in RimWorld -->
         <label>Winter Soldier I</label>
+        <!-- Description of the item when clicking 'i' in game -->
+        <description>The funny weed mix from Schedule I</description>
+        <!-- Load textures -->
+        <graphicData>
+            <texPath>Things/Item/Drug/ws1</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <!-- Item properties -->
+        <statBases>
+            <WorkToMake>500</WorkToMake>
+            <MarketValue>118</MarketValue>
+            <Mass>0.01</Mass>
+        </statBases>
+        <!-- Crafting recipe -->
+        <costList>
+            <SmokeLeafJoint>20</SmokeLeafJoint>
+            <Neutroamine>20</Neutroamine>
+        </costList>
+        <!--All the values we need for an ingestible drug-->
+        <ingestible>
+            <foodType>Processed</foodType>
+            <joyKind>Chemical</joyKind>
+            <joy>0.25</joy>
+            <drugCategory>Social</drugCategory>
+            <baseIngestTicks>150</baseIngestTicks>
+            <chairSearchRadius>4</chairSearchRadius>
+            <!--Can someone feed you this drug-->
+            <nurseable>true</nurseable>
+            <!--Put outcomedoers here later-->
+            <outcomeDoers>
+                <li Class="IngestionOutcomeDoer_GiveHediff">
+                    <hediffDef>WinterSoldierHigh</hediffDef>
+                    <severity>0.50</severity>
+                    <toleranceChemical>SmokeLeaf</toleranceChemical>
+                </li>
+                <li Class="IngestionOutcomeDoer_GiveHediff">
+                    <hediffDef>SmokeLeafTolerance</hediffDef>
+                    <severity>0.032</severity>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <comps>
+            <li Class="CompProperties_Drug">
+                <chemical>SmokeLeaf</chemical>
+                <addictiveness>0.040</addictiveness>
+                <minToleranceToAddict>0.15</minToleranceToAddict>
+                <listOrder>40</listOrder>
+            </li>
+        </comps>
     </ThingDef>
-    <!-- Description of the item when clicking 'i' in game -->
-    <description>The funny weed mix from our Schedule I playthrough.</description>
-    <!-- Load textures -->
-    <graphicData>
-        <texPath>Things/Item/Drug/ws1</texPath>
-        <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <!-- Item properties -->
-    <statBases>
-        <WorkToMake>500</WorkToMake>
-        <MarketValue>118</MarketValue>
-        <Mass>0.01</Mass>
-    </statBases>
-    <!-- Crafting recipe -->
-    <costList>
-        <SmokeLeafJoint>20</SmokeLeafJoint>
-        <Neutroamine>20</Neutroamine>
-    </costList>
-    
-</Defs>
 
+    <!--This is the definition for our drug's effect-->
+    <HediffDef>
+        <!--This is used by other defs when referring to this def-->
+        <defName>WinterSoldierHigh</defName>
+        <!--Strings that the game uses when describing our drug effect-->
+        <label>high on Winter Soldier I</label>
+        <labelNoun>a Winter Soldier I high</labelNoun>
+        <description>Weed mix that gives a speed boost and energy boost.</description>
+        <hediffClass>Hediff_High</hediffClass>
+        <defaultLabelColor>(0.6,0.6,1)</defaultLabelColor>
+        <maxSeverity>1.0</maxSeverity>
+        <isBad>false</isBad>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-3.0</severityPerDay>
+                <showHoursToRecover>true</showHoursToRecover>
+            </li>
+        </comps>
+
+        <!--This gives the game information about the research we need-->
+        <!--to unlock this item, and the buildings that we can make-->
+        <!--our item from.-->
+        <recipeMaker>
+            <researchPrerequisite>WinterSoldierProduction</researchPrerequisite>
+            <recipeUsers>
+                <li>DrugLab</li>
+            </recipeUsers>
+            <soundWorking>Recipe_Drug</soundWorking>
+        </recipeMaker>
+
+        <stages>
+            <li>
+                <painFactor>0.1</painFactor>
+                <restFallFactor>2.0</restFallFactor>
+                <statOffsets>
+                    <ImmunityGainSpeed>0.1</ImmunityGainSpeed>
+                </statOffsets>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>0.3</offset>
+                    </li>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <offset>0.2</offset>
+                    </li>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>0.3</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <!--This is the research project that will unlock our drug.-->
+    <ResearchProjectDef>
+        <defName>WinterSoldierProduction</defName>
+        <label>Winter Soldier I Production</label>
+        <description>Mix weed to produce a drug that vastly increases speed and energy.</description>
+        <!--Number of research points it costs to unlock our drug-->
+        <baseCost>400</baseCost>
+        <!--How "advanced" this research is-->
+        <!--Tribal factions will have a harder time researching it-->
+        <techLevel>Industrial</techLevel>
+        <!--Research needed before this node becomes available-->
+        <prerequisites>
+            <li>DrugProduction</li>
+        </prerequisites>
+        <!--Position on the research screen-->
+        <researchViewX>4.00</researchViewX>
+        <researchViewY>3.20</researchViewY>
+    </ResearchProjectDef>
+</Defs>
